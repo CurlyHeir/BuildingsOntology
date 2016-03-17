@@ -1,38 +1,57 @@
 package com.filipcygan.buidlingsOntology.model;
 
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.Id;
-import javax.persistence.Table;
+import javax.persistence.*;
+import java.util.ArrayList;
+import java.util.Collection;
 
 @Entity
-@Table(name = "TYPES")
 public class Type {
 
     @Id
     @GeneratedValue
-    private Long id;
-
-    private String buildings;
+    private Long typeId;
+    @Column(unique = true)
+    private String typeName;
+    @ManyToMany (mappedBy = "typeList")
+    private Collection<Building> buildingList = new ArrayList<Building>();
 
     public Type() {
 
     }
 
-    public String getBuildings() {
-        return buildings;
+    public Type(String typeName) {
+        this.typeName = typeName;
     }
 
-    public void setBuildings(String buildings) {
-        this.buildings = buildings;
+    @Override
+    public String toString() {
+        return "Type{" +
+               "typeName='" + typeName + '\'' +
+               '}';
     }
 
-    public Long getId() {
-        return id;
+    public String getTypeName() {
+        return typeName;
     }
 
-    public void setId(Long id) {
-        this.id = id;
+    public void setTypeName(String typeName) {
+        this.typeName = typeName;
+    }
+
+    public Collection<Building> getBuildingList() {
+        return buildingList;
+    }
+
+    public void setBuildingList(Collection<Building> buildingList) {
+        this.buildingList = buildingList;
+    }
+
+    public Long getTypeId() {
+        return typeId;
+    }
+
+    public void setTypeId(Long typeId) {
+        this.typeId = typeId;
     }
 
 
