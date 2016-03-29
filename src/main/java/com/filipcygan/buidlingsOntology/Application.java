@@ -1,6 +1,8 @@
 package com.filipcygan.buidlingsOntology;
 
+import com.filipcygan.buidlingsOntology.model.Building;
 import com.filipcygan.buidlingsOntology.model.SessionFactory;
+import com.filipcygan.buidlingsOntology.model.Type;
 import com.filipcygan.buidlingsOntology.service.FillDatabaseTask;
 import javafx.concurrent.Task;
 import javafx.fxml.FXMLLoader;
@@ -8,23 +10,13 @@ import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.stage.Stage;
 import org.hibernate.Session;
+import org.hibernate.Transaction;
+
+import java.util.ArrayList;
 
 public class Application extends javafx.application.Application {
     public static void main(String[] args) {
-        final Session session = SessionFactory.getSession();
-//        try {
-//            Transaction tx;
-//            tx = session.beginTransaction();
-//            Type type = new Type();
-//            type.setType("aaa");
-//            session.save(type);
-//            tx.commit();
-//
-//        } finally {
-//            session.close();
-//        }
-
-
+//        try( Session session = SessionFactory.getSession()){}
         launch(args);
 
 
@@ -40,6 +32,18 @@ public class Application extends javafx.application.Application {
         new Thread(task).start();
         primaryStage.setTitle("FXML Welcome");
         primaryStage.setScene(scene);
+        Type t = new Type();
+        t.setTypeName("aaaa");
+        ArrayList<Building> buildings = new ArrayList<>();
+        buildings.add(new Building());
+        buildings.add(new Building());
+        t.setBuildingList(buildings);
+        try (Session session = SessionFactory.getSession()) {
+            Transaction tx = session.beginTransaction();
+            session.save(t);
+            tx.commit();
+        }
+
         primaryStage.show();
     }
 }

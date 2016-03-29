@@ -6,82 +6,88 @@
 //import javafx.concurrent.ScheduledService;
 //import javafx.concurrent.Task;
 //import org.hibernate.Session;
-//import org.hibernate.Transaction;
+//import org.hibernate.criterion.Restrictions;
 //import org.json.JSONArray;
 //import org.json.JSONObject;
 //
 //import java.io.BufferedReader;
 //import java.io.InputStreamReader;
 //import java.net.URL;
-//import java.util.ArrayList;
 //
 //public class FillDatabaseService extends ScheduledService {
 //    @Override
 //    protected Task createTask() {
 //
 //        return new Task() {
-//
 //            @Override
 //            protected Integer call() throws Exception {
-////                System.out.println("Zaczynamy");
 //                final Session session = SessionFactory.getSession();
-//                String JSONAsString = getStringFromURL("http://dbpedia" +
-//                                                       ".org/sparql?default-graph-uri=http%3A%2F%2Fdbpedia" +
-//                                                       ".org&query=SELECT+%3Fname+%3Fsubject+%7B%7B%0D%0ASELECT+%3Fname+%3Fsubject%0D%0A%7B%0D%0A%3Fbuilding+rdfs%3Alabel+%3Fname++.%0D%0A++%3Fbuilding+a+dbo%3AArchitecturalStructure+.%0D%0A%3Fbuilding+dct%3Asubject+%3Fsubject%0D%0Afilter+langMatches%28+lang%28%3Fname%29%2C+%22en%22+%29%0D%0A%7D%0D%0Aorder+by+%3Fbuilding%0D%0A%7D%7D%0D%0Aoffset+0%0D%0ALIMIT+1000&format=application%2Fsparql-results%2Bjson&CXML_redir_for_subjs=121&CXML_redir_for_hrefs=&timeout=30000&debug=on");
-////                System.out.println("mamy stringa");
-//                JSONObject jsonObject = new JSONObject(JSONAsString);
-////                System.out.println("mamy jsonobject");
-//                JSONArray bindings = jsonObject.getJSONObject("results").getJSONArray("bindings");
-////                System.out.println("mamy array json");
+//                for (int offset = 0; ; offset += 1000) {
+//                    String JSONAsString = getStringFromURL("http://dbpedia" +
+//                            ".org/sparql?default-graph-uri=http%3A%2F%2Fdbpedia" +
+//                            ".org&query=SELECT+%3Fname+%3Fsubject+%7B%7B%0D%0ASELECT+%3Fn" +
+//                            "ame+%3Fsubject%0D%0A%7B%0D%0A%3Fbuilding+rdfs%3Alabel+%3Fname++.%0D" +
+//                            "%0A++%3Fbuilding+a+dbo%3AArchitecturalStructure+.%0D%0A%3Fbuilding+d" +
+//                            "ct%3Asubject+%3Fsubject%0D%0Afilter+langMatches%28+lang%28%3Fname%2" +
+//                            "9%2C+%22pl%22+%29%0D%0A%7D%0D%0Aorder+by+%3Fbuilding%0D%0A%7D%7D%0D%0Aoffset+" +
+//                            offset +
+//                            "%0D%0ALIMIT+1000&format=application%2Fsparql-results%2Bjson&CXML_redi" +
+//                            "r_for_subjs=121&CXML_redir_for_hrefs=&timeout=30000&debug=on");
+//                    JSONObject jsonObject = new JSONObject(JSONAsString);
+//                    JSONArray bindings = jsonObject.getJSONObject("results").getJSONArray("bindings");
+//                    if (bindings.isNull(0))
+//                        break;
 //
-//                ArrayList<Building> buildingList = new ArrayList<Building>();
+//                    for (int i = 0; i < bindings.length(); i++) {
+//                        Building building = new Building();
 //
-//                for (int i = 0; i < bindings.length(); i++) {
-//                    Building building = new Building();
-//                    Type type = new Type();
-//                    building.setName(bindings.getJSONObject(i).getJSONObject("name").getString("value"));
-////                    List<Type> types = new ArrayList<Type>();
-//                    building.setType(bindings.getJSONObject(i).getJSONObject("subject").getString("value"));
-////                    types.add(type);
-////                    building.setType(types);
-////                    System.out.println(building.getName() + building.getType());
-//                    session.save(building);
-////                    System.out.println(i + "   " + building.getName());
+//                        String name = bindings.getJSONObject(i).getJSONObject("name").getString("value");
+//                        Building aaa = (Building) session.createCriteria(Building.class)
+//                                .add(Restrictions.eq("buildingName", name))
+//                                .uniqueResult();
+//                        if (aaa != null)
+//                            building = aaa;
+//                        else
+//                            building.setBuildingName(name);
+//                        String typeName = bindings.getJSONObject(i).getJSONObject("subject").getString("value").substring(37).
+//                                replace('_',
+//                                        ' ');
+//                        Type type = (Type) session.createCriteria(Type.class)
+//                                .add(Restrictions.eq("typeName", typeName))
+//                                .uniqueResult();
+//                        if (type != null)
+//                            building.addType(type);
+//                        else
+//                            building.addType(new Type(typeName));
+//                        session.saveOrUpdate(building);
+//                        session.beginTransaction().commit();
+//                    }
 //                }
-//                try {
-//                    Transaction tx;
-//                    tx = session.beginTransaction();
-//
-//
-//                    tx.commit();
-//
-//                } finally {
-//                    session.close();
-//                }
-//                System.out.println(bindings.getJSONObject(1).getJSONObject("name").getString("value"));
 //                System.out.println("Dodano do bazy");
+//
 //                return null;
+//
+//            }
+//
+//
+//            private String getStringFromURL(String urlString) throws Exception {
+//
+//                BufferedReader reader = null;
+//                try {
+//                    URL url = new URL(urlString);
+//                    reader = new BufferedReader(new InputStreamReader(url.openStream()));
+//                    StringBuilder buffer = new StringBuilder();
+//                    int read;
+//                    char[] chars = new char[1024];
+//                    while ((read = reader.read(chars)) != -1)
+//                        buffer.append(chars, 0, read);
+//
+//                    return buffer.toString();
+//                } finally {
+//                    if (reader != null)
+//                        reader.close();
+//                }
 //            }
 //        };
-//    }
 //
-//    private String getStringFromURL(String urlString) throws Exception {
-//
-//        BufferedReader reader = null;
-//        try {
-//            URL url = new URL(urlString);
-//            reader = new BufferedReader(new InputStreamReader(url.openStream()));
-//            StringBuffer buffer = new StringBuffer();
-//            int read;
-//            char[] chars = new char[1024];
-//            while ((read = reader.read(chars)) != -1)
-//                buffer.append(chars, 0, read);
-//
-//            return buffer.toString();
-//        } finally {
-//            if (reader != null)
-//                reader.close();
-//        }
-//    }
-//}
-//
+//    }}

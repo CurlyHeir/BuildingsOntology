@@ -17,7 +17,6 @@ public class Building {
 
     public Building() {
     }
-
     public Collection<Type> getTypeList() {
         return typeList;
     }
