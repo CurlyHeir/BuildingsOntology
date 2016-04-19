@@ -1,8 +1,11 @@
 package com.filipcygan.buidlingsOntology.model;
 
+import org.hibernate.annotations.Fetch;
+import org.hibernate.annotations.FetchMode;
+
 import javax.persistence.*;
-import java.util.ArrayList;
-import java.util.Collection;
+import java.util.HashSet;
+import java.util.Set;
 
 @Entity
 public class Building {
@@ -10,18 +13,19 @@ public class Building {
     @Id
     @GeneratedValue
     private Long buildingId;
-    //    @Column(unique = true)
+    @Column(unique = true)
     private String buildingName;
     @ManyToMany(cascade = CascadeType.ALL)
-    private Collection<Type> typeList = new ArrayList<Type>();
+    @Fetch(FetchMode.JOIN)
+    private Set<Type> typeList = new HashSet<>();
 
     public Building() {
     }
-    public Collection<Type> getTypeList() {
+    public Set<Type> getTypeList() {
         return typeList;
     }
 
-    public void setTypeList(Collection<Type> typeList) {
+    public void setTypeList(Set<Type> typeList) {
         this.typeList = typeList;
     }
 
