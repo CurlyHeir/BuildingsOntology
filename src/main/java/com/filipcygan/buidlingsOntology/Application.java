@@ -9,11 +9,19 @@ import javafx.stage.Stage;
 
 import java.io.IOException;
 
+/**
+ * Main javaFX class
+ */
 public class Application extends javafx.application.Application {
     public static void main(String[] args) {
         launch(args);
     }
 
+    /**
+     * Start method for JavaFX that sts window size, and fire fillDatabaseService
+     * @param primaryStage
+     * @throws IOException
+     */
     @Override
     public void start(Stage primaryStage) throws IOException {
         Parent root = FXMLLoader.load(getClass().getResource("/mainWindow.fxml"));

@@ -4,6 +4,9 @@ import javax.persistence.*;
 import java.util.ArrayList;
 import java.util.Collection;
 
+/**
+ * Entity class
+ */
 @Entity
 public class Type {
 
@@ -13,7 +16,7 @@ public class Type {
     @Column(unique = true)
     private String typeName;
     @ManyToMany (mappedBy = "typeList")
-    private Collection<Building> buildingList = new ArrayList<Building>();
+    private Collection<Building> buildingList = new ArrayList<>();
 
     public Type() {
 

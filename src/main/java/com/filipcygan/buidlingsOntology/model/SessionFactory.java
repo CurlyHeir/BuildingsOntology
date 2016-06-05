@@ -6,6 +6,9 @@ import org.hibernate.boot.registry.StandardServiceRegistryBuilder;
 import org.hibernate.cfg.Configuration;
 import org.hibernate.service.ServiceRegistry;
 
+/**
+ * Class needed for Hibernate that sets SessionFactory from hibernate.cfg.xml
+ */
 public class SessionFactory {
     private static final org.hibernate.SessionFactory ourSessionFactory;
     private static final ServiceRegistry serviceRegistry;
@@ -23,6 +26,11 @@ public class SessionFactory {
         }
     }
 
+    /**
+     * Method for retrieving session
+     * @return session
+     * @throws HibernateException
+     */
     public static Session getSession() throws HibernateException {
         return ourSessionFactory.openSession();
     }

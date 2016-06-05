@@ -14,12 +14,20 @@ import org.hibernate.criterion.Restrictions;
 import java.util.Collection;
 import java.util.LinkedHashSet;
 
-public class mainWindowController {
+/**
+ * GUI Controller
+ *
+ */
+public class MainWindowController {
     @FXML
     public TreeView<String> buildingsTree;
     @FXML
     private TextField searchField;
 
+    /**
+     * Search function, fired when hitting anykey
+     * @param event
+     */
     public void search(Event event) {
         Collection<Building> buildings;
         TreeItem<String> root = new TreeItem<>();

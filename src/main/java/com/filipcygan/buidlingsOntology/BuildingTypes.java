@@ -1,5 +1,8 @@
 package com.filipcygan.buidlingsOntology;
 
+/**
+ * Enum class used for translating building types
+ */
 public enum BuildingTypes {
     ArchitecturalStructure("Struktura architektoniczna"),
     Abbey("Opactwo"),
