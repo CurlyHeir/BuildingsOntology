@@ -28,9 +28,7 @@ public class Type {
 
     @Override
     public String toString() {
-        return "Type{" +
-               "typeName='" + typeName + '\'' +
-               '}';
+        return typeName;
     }
 
     public String getTypeName() {
@@ -57,5 +55,22 @@ public class Type {
         this.typeId = typeId;
     }
 
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (!(o instanceof Type)) return false;
 
+        Type type = (Type) o;
+
+        if (typeId != null ? !typeId.equals(type.typeId) : type.typeId != null) return false;
+        return typeName != null ? typeName.equals(type.typeName) : type.typeName == null;
+
+    }
+
+    @Override
+    public int hashCode() {
+        int result = typeId != null ? typeId.hashCode() : 0;
+        result = 31 * result + (typeName != null ? typeName.hashCode() : 0);
+        return result;
+    }
 }

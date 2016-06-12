@@ -1,13 +1,15 @@
 package com.filipcygan.buidlingsOntology;
 
 import com.filipcygan.buidlingsOntology.service.FillDatabaseService;
-import javafx.concurrent.Service;
+import javafx.concurrent.ScheduledService;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.stage.Stage;
 
 import java.io.IOException;
+
+import static javafx.concurrent.ScheduledService.EXPONENTIAL_BACKOFF_STRATEGY;
 
 /**
  * Main javaFX class
@@ -26,9 +28,12 @@ public class Application extends javafx.application.Application {
     public void start(Stage primaryStage) throws IOException {
         Parent root = FXMLLoader.load(getClass().getResource("/mainWindow.fxml"));
         Scene scene = new Scene(root, 800, 600);
-        Service fillDatabaseService = new FillDatabaseService();
+        ScheduledService fillDatabaseService = new FillDatabaseService();
+        fillDatabaseService.setRestartOnFailure(true);
+        fillDatabaseService.setBackoffStrategy(EXPONENTIAL_BACKOFF_STRATEGY);
         fillDatabaseService.start();
         primaryStage.setTitle("Ontologia budynków");
+        primaryStage.setOnCloseRequest(e -> System.exit(0));
         primaryStage.setScene(scene);
         primaryStage.show();
     }

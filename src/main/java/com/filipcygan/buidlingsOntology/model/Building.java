@@ -24,6 +24,7 @@ public class Building {
 
     public Building() {
     }
+
     public Set<Type> getTypeList() {
         return typeList;
     }
@@ -54,11 +55,8 @@ public class Building {
 
     @Override
     public String toString() {
-        return "Building{" +
-               "buildingId=" + buildingId +
-               ", buildingName='" + buildingName + '\'' +
-               ", typeList=" + typeList +
-               '}';
+        return buildingName;
+
     }
 
     @Override
