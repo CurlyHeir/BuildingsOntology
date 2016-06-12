@@ -66,6 +66,10 @@ public class MainWindowController implements Initializable {
         buildingsList.setItems(items);
     }
 
+    /**
+     * Method for deleting building from database
+     * @param actionEvent
+     */
     public void deleteItem(ActionEvent actionEvent) {
         try (Session session = SessionFactory.getSession()) {
             Query query = session.createQuery("delete Building where buildingId = :ID");
@@ -75,6 +79,10 @@ public class MainWindowController implements Initializable {
         }
     }
 
+    /**
+     *
+     * @param event
+     */
     public void fillTypeList(Event event) {
         ObservableList<Type> items = FXCollections.observableArrayList(buildingsList.getSelectionModel().
                 getSelectedItem().getTypeList());
@@ -91,6 +99,10 @@ public class MainWindowController implements Initializable {
         typeComboBox.getItems().addAll(types);
     }
 
+    /**
+     * Button action for inserting new Building
+     * @param actionEvent
+     */
     public void addBuilding(ActionEvent actionEvent) {
         Building building = new Building();
         building.setBuildingName(buildingName.getText());
@@ -103,21 +115,22 @@ public class MainWindowController implements Initializable {
         }
     }
 
+    /**
+     * Button action, for showing modal
+     * @param actionEvent
+     * @throws IOException
+     */
     public void showUpdateDialog(ActionEvent actionEvent) throws IOException {
         Stage detailStage = new Stage();
         FXMLLoader loader = new FXMLLoader(getClass().getResource("/updateModal.fxml"));
         Parent root = loader.load();
         UpdateModalController updateModalController = loader.getController();
-
-
         updateModalController.setBuilding(buildingsList.getSelectionModel().getSelectedItem());
         updateModalController.setProperties();
         detailStage.setScene(new Scene(root));
         detailStage.initModality(Modality.APPLICATION_MODAL);
         detailStage.initStyle(StageStyle.UNDECORATED);
         detailStage.showAndWait();
-
-
     }
 }
 

@@ -30,9 +30,13 @@ public class UpdateModalController {
         this.building = building;
     }
 
+    /**
+     * Method for updating Building after button click
+     * @param actionEvent
+     */
     public void updateBuilding(ActionEvent actionEvent) {
         building.setBuildingName(buildingName.getText());
-        building.setTypeList(new HashSet<Type>(typeSelection.getTargetItems()));
+        building.setTypeList(new HashSet<>(typeSelection.getTargetItems()));
         try (Session session = SessionFactory.getSession()) {
             session.saveOrUpdate(building);
             session.beginTransaction().commit();
@@ -40,7 +44,7 @@ public class UpdateModalController {
         ((Stage) ((Node) actionEvent.getSource()).getScene().getWindow()).close();
     }
 
-    public void closemodal(ActionEvent actionEvent) {
+    public void closeModal(ActionEvent actionEvent) {
         ((Stage) ((Node) actionEvent.getSource()).getScene().getWindow()).close();
     }
 

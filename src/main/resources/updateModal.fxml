@@ -12,6 +12,6 @@
       <ListSelectionView fx:id="typeSelection" layoutX="83.0" layoutY="82.0" />
       <Label layoutX="190.0" layoutY="34.0" text="Nazwa:" />
       <Button layoutX="361.0" layoutY="319.0" mnemonicParsing="false" onAction="#updateBuilding" text="Aktualizuj" />
-      <Button layoutX="183.0" layoutY="319.0" mnemonicParsing="false" onAction="#closemodal" text="Powrót" />
+      <Button layoutX="183.0" layoutY="319.0" mnemonicParsing="false" onAction="#closeModal" text="Powrót" />
    </children>
 </AnchorPane>
