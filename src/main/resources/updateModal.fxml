@@ -6,7 +6,7 @@
 <?import javafx.scene.layout.AnchorPane?>
 <?import org.controlsfx.control.ListSelectionView?>
 
-<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/8.0.60" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.filipcygan.buidlingsOntology.controllers.UpdateModalController">
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/8.0.60" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.przemekwosko.verbs.controllers.UpdateModalController">
    <children>
       <TextField fx:id="buildingName" layoutX="246.0" layoutY="30.0" />
       <ListSelectionView fx:id="typeSelection" layoutX="83.0" layoutY="82.0" />

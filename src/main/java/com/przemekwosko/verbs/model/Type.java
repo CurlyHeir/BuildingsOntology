@@ -1,4 +1,4 @@
-package com.filipcygan.buidlingsOntology.model;
+package com.przemekwosko.verbs.model;
 
 import javax.persistence.*;
 import java.util.ArrayList;

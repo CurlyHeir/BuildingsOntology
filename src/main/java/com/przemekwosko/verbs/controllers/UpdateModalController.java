@@ -1,8 +1,8 @@
-package com.filipcygan.buidlingsOntology.controllers;
+package com.przemekwosko.verbs.controllers;
 
-import com.filipcygan.buidlingsOntology.model.Building;
-import com.filipcygan.buidlingsOntology.model.SessionFactory;
-import com.filipcygan.buidlingsOntology.model.Type;
+import com.przemekwosko.verbs.model.Building;
+import com.przemekwosko.verbs.model.SessionFactory;
+import com.przemekwosko.verbs.model.Type;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.Node;

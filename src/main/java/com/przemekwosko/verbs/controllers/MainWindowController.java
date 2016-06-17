@@ -1,8 +1,8 @@
-package com.filipcygan.buidlingsOntology.controllers;
+package com.przemekwosko.verbs.controllers;
 
-import com.filipcygan.buidlingsOntology.model.Building;
-import com.filipcygan.buidlingsOntology.model.SessionFactory;
-import com.filipcygan.buidlingsOntology.model.Type;
+import com.przemekwosko.verbs.model.Building;
+import com.przemekwosko.verbs.model.SessionFactory;
+import com.przemekwosko.verbs.model.Type;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
@@ -25,10 +25,7 @@ import org.hibernate.criterion.Restrictions;
 
 import java.io.IOException;
 import java.net.URL;
-import java.util.Collection;
-import java.util.LinkedHashSet;
-import java.util.List;
-import java.util.ResourceBundle;
+import java.util.*;
 
 /**
  * GUI Controller
@@ -56,11 +53,14 @@ public class MainWindowController implements Initializable {
 
     private void fillListViewWithBuildings() {
         Collection<Building> buildings;
-        try (Session session = com.filipcygan.buidlingsOntology.model.SessionFactory.getSession()) {
-            buildings = new LinkedHashSet(session.createCriteria(Building.class).add(Restrictions.
-                    like("buildingName", "%" + searchField
-                            .getText() + '%').ignoreCase()).addOrder(Order.asc("buildingName")).list());
-        }
+//        try (Session session = com.przemekwosko.verbs.model.SessionFactory.getSession()) {
+//            buildings = new LinkedHashSet(session.createCriteria(Building.class).add(Restrictions.
+//                    like("buildingName", "%" + searchField
+//                            .getText() + '%').ignoreCase()).addOrder(Order.asc("buildingName")).list());
+//        }
+
+        buildings = new ArrayList<>();
+        buildings.add(new Building());
 
         ObservableList<Building> items = FXCollections.observableArrayList(buildings);
         buildingsList.setItems(items);
@@ -71,12 +71,12 @@ public class MainWindowController implements Initializable {
      * @param actionEvent
      */
     public void deleteItem(ActionEvent actionEvent) {
-        try (Session session = SessionFactory.getSession()) {
-            Query query = session.createQuery("delete Building where buildingId = :ID");
-            query.setParameter("ID", buildingsList.getSelectionModel().getSelectedItem().getBuildingId());
-            query.executeUpdate();
-            buildingsList.getItems().remove(buildingsList.getSelectionModel().getSelectedIndex());
-        }
+//        try (Session session = SessionFactory.getSession()) {
+//            Query query = session.createQuery("delete Building where buildingId = :ID");
+//            query.setParameter("ID", buildingsList.getSelectionModel().getSelectedItem().getBuildingId());
+//            query.executeUpdate();
+//            buildingsList.getItems().remove(buildingsList.getSelectionModel().getSelectedIndex());
+//        }
     }
 
     /**
@@ -93,9 +93,10 @@ public class MainWindowController implements Initializable {
     public void initialize(URL location, ResourceBundle resources) {
         List types;
         try (Session session = SessionFactory.getSession()) {
-            types = session.createCriteria(Type.class).addOrder(Order.asc("typeName")).list();
+//            types = session.createCriteria(Type.class).addOrder(Order.asc("typeName")).list();
 
         }
+        types = new ArrayList();
         typeComboBox.getItems().addAll(types);
     }
 

@@ -1,6 +1,6 @@
-package com.filipcygan.buidlingsOntology;
+package com.przemekwosko.verbs;
 
-import com.filipcygan.buidlingsOntology.service.FillDatabaseService;
+import com.przemekwosko.verbs.service.FillDatabaseService;
 import javafx.concurrent.ScheduledService;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;

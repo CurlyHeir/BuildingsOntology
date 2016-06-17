@@ -1,4 +1,4 @@
-package com.filipcygan.buidlingsOntology;
+package com.przemekwosko.verbs;
 
 /**
  * Enum class used for translating building types

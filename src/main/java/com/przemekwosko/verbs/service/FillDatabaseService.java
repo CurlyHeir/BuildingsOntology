@@ -1,9 +1,9 @@
-package com.filipcygan.buidlingsOntology.service;
+package com.przemekwosko.verbs.service;
 
-import com.filipcygan.buidlingsOntology.BuildingTypes;
-import com.filipcygan.buidlingsOntology.model.Building;
-import com.filipcygan.buidlingsOntology.model.SessionFactory;
-import com.filipcygan.buidlingsOntology.model.Type;
+import com.przemekwosko.verbs.BuildingTypes;
+import com.przemekwosko.verbs.model.Building;
+import com.przemekwosko.verbs.model.SessionFactory;
+import com.przemekwosko.verbs.model.Type;
 import javafx.beans.property.BooleanProperty;
 import javafx.concurrent.ScheduledService;
 import javafx.concurrent.Task;

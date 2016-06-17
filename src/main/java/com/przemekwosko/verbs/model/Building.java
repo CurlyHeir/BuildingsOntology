@@ -1,4 +1,4 @@
-package com.filipcygan.buidlingsOntology.model;
+package com.przemekwosko.verbs.model;
 
 import org.hibernate.annotations.Fetch;
 import org.hibernate.annotations.FetchMode;
