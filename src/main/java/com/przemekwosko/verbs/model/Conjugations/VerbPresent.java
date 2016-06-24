@@ -11,4 +11,9 @@ import javax.persistence.Entity;
 @Entity
 public class VerbPresent extends VerbConjugation {
 
+    @Override
+    public String tenseName() {
+        return "Verb Present";
+    }
+
 }

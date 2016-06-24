@@ -711,7 +711,6 @@ public class VerbList {
             "send",
             "show",
             "shut",
-            "sing",
             "sink",
             "sit",
             "sleep",
@@ -733,8 +732,8 @@ public class VerbList {
             "write"
     };
 
-    public Collection<String> getVerbs() {
-        Collection<String> verbs = new ArrayList<>();
+    public ArrayList<String> getVerbsArray() {
+        ArrayList<String> verbs = new ArrayList<>();
         verbs.addAll(Arrays.asList(verbArray));
         return verbs;
     }

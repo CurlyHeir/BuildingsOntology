@@ -10,4 +10,9 @@ import javax.persistence.Entity;
 
 @Entity
 public class VerbPresentContinuous extends VerbConjugation {
+
+    @Override
+    public String tenseName() {
+        return "Verb Present Continuous";
+    }
 }

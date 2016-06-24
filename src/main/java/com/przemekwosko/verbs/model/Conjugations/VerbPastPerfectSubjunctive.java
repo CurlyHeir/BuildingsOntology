@@ -10,4 +10,9 @@ import javax.persistence.Entity;
 
 @Entity
 public class VerbPastPerfectSubjunctive extends VerbConjugation {
+
+    @Override
+    public String tenseName() {
+        return "Past Perfect Subjunctive";
+    }
 }

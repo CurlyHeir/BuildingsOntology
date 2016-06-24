@@ -23,6 +23,12 @@ public abstract class VerbConjugation implements Serializable {
     private String plural2;
     private String plural3;
 
+    public String tenseName() {
+        return "";
+    }
+
+
+
     public VerbConjugation() {
     }
 
@@ -94,6 +100,7 @@ public abstract class VerbConjugation implements Serializable {
 
     @Override
     public String toString() {
-        return super.toString();
+        return tenseName() + " " + "singular1:" + singular1 + " singular2:" +singular2 + " singular3:" + singular3 + " plural1:" + plural1 + " plural2:" +plural2
+                + " plural3:" + plural3;
     }
 }

@@ -11,4 +11,8 @@ import javax.persistence.Entity;
 @Entity
 public class VerbSimplePast extends VerbConjugation {
 
+    @Override
+    public String tenseName() {
+        return "Simple Past";
+    }
 }

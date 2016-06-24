@@ -16,33 +16,7 @@ public class SessionFactory {
 
     static {
         try {
-            Configuration configuration = new Configuration();
-            configuration.configure();
-
-            // verbs and conjugation
-            configuration.addAnnotatedClass(Verb.class);
-            configuration.addAnnotatedClass(VerbConditionalPerfect.class);
-            configuration.addAnnotatedClass(VerbConditionalPerfectProgressive.class);
-            configuration.addAnnotatedClass(VerbConditionalPresent.class);
-            configuration.addAnnotatedClass(VerbConditionalPresentProgressive.class);
-            configuration.addAnnotatedClass(VerbFuture.class);
-            configuration.addAnnotatedClass(VerbFutureContinuous.class);
-            configuration.addAnnotatedClass(VerbFuturePerfect.class);
-            configuration.addAnnotatedClass(VerbFuturePerfetContinuous.class);
-            configuration.addAnnotatedClass(VerbPastContinuous.class);
-            configuration.addAnnotatedClass(VerbPastPerfect.class);
-            configuration.addAnnotatedClass(VerbPastPerfetContinuous.class);
-            configuration.addAnnotatedClass(VerbPastPerfectSubjunctive.class);
-            configuration.addAnnotatedClass(VerbPastSubjunctive.class);
-            configuration.addAnnotatedClass(VerbPresent.class);
-            configuration.addAnnotatedClass(VerbPresentContinuous.class);
-            configuration.addAnnotatedClass(VerbPresentPerfect.class);
-            configuration.addAnnotatedClass(VerbPresentPerfectContinuous.class);
-            configuration.addAnnotatedClass(VerbPresentSubjunctive.class);
-            configuration.addAnnotatedClass(VerbSimplePast.class);
-
-            // other
-            configuration.addAnnotatedClass(Translation.class);
+            Configuration configuration = getConfiguration();
 
             serviceRegistry = new StandardServiceRegistryBuilder().applySettings(configuration.getProperties()).build();
             ourSessionFactory = configuration.buildSessionFactory(serviceRegistry);
@@ -58,5 +32,36 @@ public class SessionFactory {
      */
     public static Session getSession() throws HibernateException {
         return ourSessionFactory.openSession();
+    }
+
+    public static Configuration getConfiguration() {
+        Configuration configuration = new Configuration();
+        configuration.configure();
+
+        // verbs and conjugation
+        configuration.addAnnotatedClass(Verb.class);
+        configuration.addAnnotatedClass(VerbConditionalPerfect.class);
+        configuration.addAnnotatedClass(VerbConditionalPerfectProgressive.class);
+        configuration.addAnnotatedClass(VerbConditionalPresent.class);
+        configuration.addAnnotatedClass(VerbConditionalPresentProgressive.class);
+        configuration.addAnnotatedClass(VerbFuture.class);
+        configuration.addAnnotatedClass(VerbFutureContinuous.class);
+        configuration.addAnnotatedClass(VerbFuturePerfect.class);
+        configuration.addAnnotatedClass(VerbFuturePerfetContinuous.class);
+        configuration.addAnnotatedClass(VerbPastContinuous.class);
+        configuration.addAnnotatedClass(VerbPastPerfect.class);
+        configuration.addAnnotatedClass(VerbPastPerfetContinuous.class);
+        configuration.addAnnotatedClass(VerbPastPerfectSubjunctive.class);
+        configuration.addAnnotatedClass(VerbPastSubjunctive.class);
+        configuration.addAnnotatedClass(VerbPresent.class);
+        configuration.addAnnotatedClass(VerbPresentContinuous.class);
+        configuration.addAnnotatedClass(VerbPresentPerfect.class);
+        configuration.addAnnotatedClass(VerbPresentPerfectContinuous.class);
+        configuration.addAnnotatedClass(VerbPresentSubjunctive.class);
+        configuration.addAnnotatedClass(VerbSimplePast.class);
+
+        // other
+        configuration.addAnnotatedClass(Translation.class);
+        return configuration;
     }
 }

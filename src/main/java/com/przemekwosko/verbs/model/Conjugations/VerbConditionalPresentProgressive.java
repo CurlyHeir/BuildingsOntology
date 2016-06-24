@@ -10,4 +10,9 @@ import javax.persistence.Entity;
  */
 @Entity
 public class VerbConditionalPresentProgressive extends VerbConjugation {
+
+    @Override
+    public String tenseName() {
+        return "Conditional Present Progressive";
+    }
 }
