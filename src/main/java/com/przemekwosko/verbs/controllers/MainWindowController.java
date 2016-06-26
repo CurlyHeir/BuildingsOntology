@@ -18,6 +18,7 @@ import javafx.scene.Scene;
 import javafx.scene.control.Label;
 import javafx.scene.control.ListView;
 import javafx.scene.control.TextField;
+import javafx.scene.layout.Pane;
 import javafx.stage.Modality;
 import javafx.stage.Stage;
 import javafx.stage.StageStyle;
@@ -40,15 +41,24 @@ public class MainWindowController implements Initializable {
 
     @FXML
     private TextField buildingName;
+
     @FXML
     private ListView<Verb> buildingsList;
+
     @FXML
     private TextField searchField;
 
     @FXML
     private ListView<VerbConjugation> conjustions;
 
+    @FXML
+    private Pane verbDescription;
 
+    @FXML
+    private Label tenseName;
+
+    @FXML
+    private Label first, second, third, mFirst, mSecond, mThird;
 
     /**
      * Search function, fired when hitting anykey
@@ -81,6 +91,24 @@ public class MainWindowController implements Initializable {
     private  void fillListWithConjuctions(Verb verb) {
         ObservableList<VerbConjugation> items = FXCollections.observableArrayList(verbDetails(verb));
         conjustions.setItems(items);
+        conjustions.getSelectionModel().selectedItemProperty().addListener( new ChangeListener<VerbConjugation>() {
+
+            @Override
+            public void changed(ObservableValue<? extends VerbConjugation> observable, VerbConjugation oldValue, VerbConjugation newValue) {
+                fillDetails(newValue);
+            }
+        });
+    }
+
+    public void fillDetails(VerbConjugation verb) {
+        tenseName.setText(verb.tenseName());
+        first.setText(verb.getSingular1());
+        second.setText(verb.getSingular2());
+        third.setText(verb.getSingular3());
+
+        mFirst.setText(verb.getPlural1());
+        mSecond.setText(verb.getPlural2());
+        mThird.setText(verb.getPlural3());
     }
 
     /**
@@ -88,12 +116,7 @@ public class MainWindowController implements Initializable {
      * @param actionEvent
      */
     public void deleteItem(ActionEvent actionEvent) {
-//        try (Session session = SessionFactory.getSession()) {
-//            Query query = session.createQuery("delete Building where buildingId = :ID");
-//            query.setParameter("ID", buildingsList.getSelectionModel().getSelectedItem().getBuildingId());
-//            query.executeUpdate();
-//            buildingsList.getItems().remove(buildingsList.getSelectionModel().getSelectedIndex());
-//        }
+
     }
 
     /**
@@ -108,14 +131,12 @@ public class MainWindowController implements Initializable {
 
     @Override
     public void initialize(URL location, ResourceBundle resources) {
-        startFetchVerbs();
         List types;
         try (Session session = SessionFactory.getSession()) {
 //            types = session.createCriteria(Type.class).addOrder(Order.asc("typeName")).list();
 
         }
         types = new ArrayList();
-//        typeComboBox.getItems().addAll(types);
         fillListViewWithBuildings();
     }
 
@@ -153,13 +174,6 @@ public class MainWindowController implements Initializable {
 //        detailStage.showAndWait();
     }
 
-
-    private void startFetchVerbs() {
-//        fillDatabaseService = new FillDatabaseService();
-//        fillDatabaseService.setRestartOnFailure(true);
-//        fillDatabaseService.setBackoffStrategy(EXPONENTIAL_BACKOFF_STRATEGY);
-//        fillDatabaseService.start();
-    }
 
     private LinkedHashSet<VerbConjugation> verbDetails(Verb verb) {
         LinkedHashSet<VerbConjugation> tenses = new LinkedHashSet<>();

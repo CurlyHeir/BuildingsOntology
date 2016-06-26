@@ -33,7 +33,24 @@
    <Pane>
       <children>
          <Label layoutX="14.0" layoutY="14.0" prefHeight="17.0" prefWidth="732.0" text="Tenses" />
-         <ListView fx:id="conjustions" layoutX="14.0" layoutY="36.0" prefHeight="428.0" prefWidth="732.0" />
+         <ListView fx:id="conjustions" layoutX="14.0" layoutY="36.0" prefHeight="700.0" prefWidth="222.0" />
+         <Pane fx:id="verbDescription" layoutX="245.0" layoutY="36.0" prefHeight="287.0" prefWidth="495.0">
+            <children>
+               <Label fx:id="tenseName" layoutX="14.0" layoutY="14.0" prefHeight="17.0" prefWidth="275.0" text="Wybierz " />
+               <Label layoutX="14.0" layoutY="118.0" prefHeight="17.0" prefWidth="97.0" text="we" />
+               <Label layoutX="14.0" layoutY="135.0" prefHeight="17.0" prefWidth="97.0" text="you" />
+               <Label layoutX="14.0" layoutY="79.0" prefHeight="17.0" prefWidth="97.0" text="you" />
+               <Label layoutX="14.0" layoutY="96.0" prefHeight="17.0" prefWidth="97.0" text="he/she/it" />
+               <Label layoutX="14.0" layoutY="62.0" prefHeight="17.0" prefWidth="97.0" text="I" />
+               <Label layoutX="14.0" layoutY="152.0" prefHeight="17.0" prefWidth="97.0" text="they" />
+               <Label fx:id="first" layoutX="111.0" layoutY="62.0" prefHeight="17.0" prefWidth="198.0" />
+               <Label fx:id="second" layoutX="111.0" layoutY="79.0" prefHeight="17.0" prefWidth="198.0" />
+               <Label fx:id="third" layoutX="111.0" layoutY="96.0" prefHeight="17.0" prefWidth="198.0" />
+               <Label fx:id="mFirst" layoutX="111.0" layoutY="118.0" prefHeight="17.0" prefWidth="198.0" />
+               <Label fx:id="mSecond" layoutX="111.0" layoutY="135.0" prefHeight="17.0" prefWidth="198.0" />
+               <Label fx:id="mThird" layoutX="111.0" layoutY="152.0" prefHeight="17.0" prefWidth="198.0" />
+            </children>
+         </Pane>
       </children>
    </Pane>
 </SplitPane>

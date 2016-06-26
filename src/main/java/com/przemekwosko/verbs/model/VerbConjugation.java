@@ -100,7 +100,7 @@ public abstract class VerbConjugation implements Serializable {
 
     @Override
     public String toString() {
-        return tenseName() + " " + "singular1:" + singular1 + " singular2:" +singular2 + " singular3:" + singular3 + " plural1:" + plural1 + " plural2:" +plural2
-                + " plural3:" + plural3;
+        return tenseName(); //+ " " + "singular1:" + singular1 + " singular2:" +singular2 + " singular3:" + singular3 + " plural1:" + plural1 + " plural2:" +plural2
+                //+ " plural3:" + plural3;
     }
 }
