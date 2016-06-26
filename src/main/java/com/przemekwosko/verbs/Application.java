@@ -27,13 +27,7 @@ public class Application extends javafx.application.Application {
     public void start(Stage primaryStage) throws IOException {
         Parent root = FXMLLoader.load(getClass().getResource("/mainWindow.fxml"));
         Scene scene = new Scene(root, 800, 600);
-//        ScheduledService fillDatabaseService = new FillDatabaseService();
-//        fillDatabaseService.setRestartOnFailure(true);
-//        fillDatabaseService.setBackoffStrategy(EXPONENTIAL_BACKOFF_STRATEGY);
-//        fillDatabaseService.start();
         service = new HTMLContentService();
-//        service.startFetch();
-
         primaryStage.setTitle("koniugacja czasownikow w języku angielskim");
         primaryStage.setOnCloseRequest(e -> System.exit(0));
         primaryStage.setScene(scene);

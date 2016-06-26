@@ -13,20 +13,8 @@ import java.util.ArrayList;
  */
 public class VerbsRepository {
 
-//
-//    public boolean isVerbExist(String verb) {
-//
-//            Verb foundVerb = (Verb) session.createCriteria(Verb.class).add( Restrictions.eq("baseVerb", verb)).uniqueResult();
-//            if (foundVerb != null)
-//                return true;
-//        return false;
-//    }
-
     public void saveVerbs(ArrayList<Verb> verbs) {
         saveVerbToDatabase(new Verb());
-//        for (Verb v : verbs) {
-//            saveVerbToDatabase(v);
-//        }
 
         Session session = SessionFactory.getSession();
         Transaction transaction = session.beginTransaction();
@@ -39,16 +27,8 @@ public class VerbsRepository {
         }
         transaction.commit();
         session.close();
-//        org.hibernate.SessionFactory sessionFactory = new SessionFactory().getConfiguration().buildSessionFactory();
-//
-//        StatelessSession session = sessionFactory.openStatelessSession();
-//        Transaction tx = session.beginTransaction();
-//        for(Verb v : verbs) {
-//            session.save
-//        }
-//        tx.commit();
-//        session.close();
     }
+
     public void saveVerbToDatabase(Verb verb) {
         Session mySession = SessionFactory.getSession();
         mySession.saveOrUpdate(verb);
