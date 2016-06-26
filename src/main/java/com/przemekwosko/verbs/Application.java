@@ -28,6 +28,7 @@ public class Application extends javafx.application.Application {
         Parent root = FXMLLoader.load(getClass().getResource("/mainWindow.fxml"));
         Scene scene = new Scene(root, 800, 600);
         service = new HTMLContentService();
+        service.startFetch(); // we should handle this by subscribing observable, and periodically emit results
         primaryStage.setTitle("koniugacja czasownikow w języku angielskim");
         primaryStage.setOnCloseRequest(e -> System.exit(0));
         primaryStage.setScene(scene);
